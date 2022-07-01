@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Node Tester</title>
+  </head>
+  <body>
+    <input type="text" name="user" value="Pushkar" />
+    <input type="text" name="uid" value="100" />
+    <button class="btn">Click</button>
+    <script>
+      const btn = document.querySelector(".btn");
+      const myId = document.querySelector('input[name="uid"]');
+      const myUser = document.querySelector('input[name="user"]');
+
+      btn.addEventListener("click", () => {
+        const data = {
+          id: myId.value,
+          name: myUser.value,
+        };
+        // console.log(data);
+        fetch("/users", {
+          method: "post",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/JSON" },
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      });
+    </script>
+  </body>
+</html>
